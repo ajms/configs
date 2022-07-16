@@ -83,8 +83,14 @@ Config { font = "-*-courier-medium-r-normal-*-15-*-*-*-*-*-iso8859-1"
                                        , "-i"	, "<fc=#006000>Charged</fc>"
                              ] 50
 
-                    , Run StdinReader
+        , Run XMonadLog
+        , Run Alsa "default" "Master"
+                        [ "--template", "<volumestatus>"
+                        , "--suffix"  , "True"
+                        , "--"
+                        , "--on", ""
+                        ]
                     ]
        , alignSep = "}{<fc=#ee9a00>%date%</fc>"
-       , template = "%StdinReader% }{ %date% | %battery% | %dynnetwork% | %multicpu% | %coretemp% | %memory% | %disku% |" 
+       , template = "%XMonadLog% }{ %date% | %battery% | %dynnetwork% | %multicpu% | %coretemp% | %memory% | %disku% | %alsa:default:Master%" 
        }
