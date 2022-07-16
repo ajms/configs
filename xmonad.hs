@@ -1,4 +1,5 @@
 import XMonad
+import XMonad.Actions.GridSelect
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
@@ -6,7 +7,6 @@ import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.StatusBar
 import XMonad.Hooks.StatusBar.PP
 import XMonad.Layout.Magnifier
-import XMonad.Layout.ThreeColumns
 import XMonad.Util.EZConfig
 import XMonad.Util.Loggers
 import XMonad.Util.Ungrab
@@ -55,7 +55,7 @@ myKeys =
   [ ((mod4Mask .|. shiftMask, xK_z), spawn "xscreensaver-command -lock"),
     ((controlMask, xK_Print), spawn "sleep 0.2; scrot -s"),
     ((0, xK_Print), unGrab *> spawn "scrot -s"),
-    -- 	 , ((mod4Mask, xK_g), goToSelected defaultGSConfig)
+    ((mod4Mask, xK_g), goToSelected def),
     ((0, 0x1008ff59), spawn "xrandr --output DP1-1 --left-of eDP1 --mode 1920x1080 --output DP1-3 --mode 1680x1050 --left-of DP1-1"),
     ((mod4Mask .|. shiftMask, xK_u), spawn "xrandr --output DP1-1 --off --output DP1-3 --off"),
     ((mod4Mask, xK_b), sendMessage ToggleStruts),
