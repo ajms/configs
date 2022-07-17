@@ -45,7 +45,7 @@ myManageHook =
       className =? "Evince" --> doShift "doc",
       className =? "Gimp" --> doShift "msg",
       className =? "qutebrowser" --> doShift "msg",
-      className =? "signal-desktop" --> doShift "msg",
+      className =? "Signal" --> doShift "msg",
       className =? "Thunderbird" --> doShift "mail",
       manageDocks
     ]
