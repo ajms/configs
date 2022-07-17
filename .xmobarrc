@@ -1,7 +1,7 @@
 Config { font = "-*-courier-medium-r-normal-*-15-*-*-*-*-*-iso8859-1"
        , bgColor = "black"
        , fgColor = "grey"
-       , position = TopW L 95
+       , position = TopW L 97
        , lowerOnStart = True
        , sepChar = "%"
        , commands = [         -- network activity monitor (dynamic interface resolution)
@@ -62,8 +62,10 @@ Config { font = "-*-courier-medium-r-normal-*-15-*-*-*-*-*-iso8859-1"
         , Run Date           "<fc=#ABABAB>%F (%a) %T</fc>" "date" 10
 
         -- keyboard layout indicator
-        , Run Kbd            [ ("us(dvorak)" , "<fc=#00008B>DV</fc>")
-                             , ("us"         , "<fc=#8B0000>US</fc>")
+        , Run Kbd            [ ("us", "<fc=#00ff00>US</fc>")
+                             , ("de", "<fc=#ffff00>DE</fc>")
+                             , ("dk", "<fc=#ff0000>DK</fc>")
+                             , ("gr", "<fc=#1589ff>GR</fc>")
                              ]
         , Run DiskU [("/", "<used>/<size>"), ("/home", "<used>/<size>")] ["-L", "20", "-H", "50", "-m", "1", "-p", "3"] 20
                     , Run Date "%a %b %_d %l:%M" "date" 10
@@ -92,5 +94,5 @@ Config { font = "-*-courier-medium-r-normal-*-15-*-*-*-*-*-iso8859-1"
                         ]
                     ]
        , alignSep = "}{<fc=#ee9a00>%date%</fc>"
-       , template = "%XMonadLog% }{ %date% | %battery% | %dynnetwork% | %multicpu% | %coretemp% | %memory% | %disku% | %alsa:default:Master%" 
+       , template = "%XMonadLog% }{ %date% | %battery% | %dynnetwork% | %multicpu% | %coretemp% | %memory% | %disku% | vol: %alsa:default:Master% | %kbd%" 
        }

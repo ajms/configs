@@ -38,18 +38,19 @@ myManageHook =
   composeAll
     [ className =? "Gimp" --> doFloat,
       isDialog --> doFloat,
-      className =? myTerminal --> doShift "1:dev",
-      className =? "chromium" --> doShift "2:web",
-      className =? "firefox" --> doShift "2:web",
-      className =? "Evince" --> doShift "3:doc",
-      className =? "Gimp" --> doShift "4:prog",
-      className =? "qutebrowser" --> doShift "4:prog",
-      className =? "signal-desktop" --> doShift "4:prog",
-      className =? "Thunderbird" --> doShift "5:mail",
+      className =? myTerminal --> doShift "dev",
+      className =? "codium" --> doShift "dev",
+      className =? "chromium" --> doShift "web",
+      className =? "firefox" --> doShift "web",
+      className =? "Evince" --> doShift "doc",
+      className =? "Gimp" --> doShift "msg",
+      className =? "qutebrowser" --> doShift "msg",
+      className =? "signal-desktop" --> doShift "msg",
+      className =? "Thunderbird" --> doShift "mail",
       manageDocks
     ]
 
-myWorkSpaces = ["1:dev", "2:web", "3:doc", "4:prog", "5:mail", "6:comp", "7", "8", "9"]
+myWorkSpaces = ["dev", "web", "doc", "msg", "mail", "pwd", "7", "8", "9"]
 
 myKeys =
   [ ((mod4Mask .|. shiftMask, xK_z), spawn "xscreensaver-command -lock"),

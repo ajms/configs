@@ -12,7 +12,7 @@ xsetroot -cursor_name left_ptr
 
 # set up icon tray
 trayer --edge top --align right --SetDockType true --SetPartialStrut true \
- --expand true --widthtype pixel --width 50  --transparent true --alpha 0 --tint 0x000000 --height 15 &
+ --expand true --width 3 --height 18  --transparent true --tint 0x000000 --alpha 0 &
 
 # start tray apps
 dunst &
