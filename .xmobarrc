@@ -1,13 +1,13 @@
 Config { font = "-*-courier-medium-r-normal-*-15-*-*-*-*-*-iso8859-1"
        , bgColor = "black"
        , fgColor = "grey"
-       , position = TopW L 97
+       , position = TopW L 90
        , lowerOnStart = True
        , sepChar = "%"
        , commands = [         -- network activity monitor (dynamic interface resolution)
          Run DynNetwork     [ "--template" , "<dev>: <rx>kB/s|<tx>kB/s"
-                             , "--Low"      , "500000"       -- units: B/s
-                             , "--High"     , "5000000"       -- units: B/s
+                             , "--Low"      , "1000000"       -- units: B/s
+                             , "--High"     , "10000000"       -- units: B/s
                              , "--low"      , "darkgreen"
                              , "--normal"   , "darkorange"
                              , "--high"     , "darkred"

@@ -25,8 +25,8 @@ myConfig =
       workspaces = myWorkSpaces,
       terminal = myTerminal,
       borderWidth = 1,
-      normalBorderColor = "black",
-      focusedBorderColor = "#1b6800",
+      normalBorderColor = "grey",
+      focusedBorderColor = "black",
       manageHook = myManageHook
     }
     `additionalKeys` myKeys
@@ -46,21 +46,26 @@ myManageHook =
       className =? "Gimp" --> doShift "msg",
       className =? "qutebrowser" --> doShift "msg",
       className =? "Signal" --> doShift "msg",
-      className =? "Thunderbird" --> doShift "mail",
+      className =? "Whatsapp-for-linux" --> doShift "msg",
+      className =? "TelegramDesktop" --> doShift "msg",
+      className =? "Slack" --> doShift "msg",
+      className =? "thunderbird" --> doShift "mail",
+      className =? "KeePassXC" --> doShift "pwd",
+      className =? "obsidian" --> doShift "doc",
       manageDocks
     ]
 
 myWorkSpaces = ["dev", "web", "doc", "msg", "mail", "pwd", "7", "8", "9"]
 
 myKeys =
-  [ ((mod4Mask .|. shiftMask, xK_z), spawn "xscreensaver-command -lock"),
-    ((controlMask, xK_Print), spawn "sleep 0.2; scrot -s"),
+  [ ((controlMask, xK_Print), spawn "sleep 0.2; scrot -s"),
     ((0, xK_Print), unGrab *> spawn "scrot -s"),
     ((mod4Mask, xK_g), goToSelected def),
     ((0, 0x1008ff59), spawn "xrandr --output DP1-1 --left-of eDP1 --mode 1920x1080 --output DP1-3 --mode 1680x1050 --left-of DP1-1"),
     ((mod4Mask .|. shiftMask, xK_u), spawn "xrandr --output DP1-1 --off --output DP1-3 --off"),
     ((mod4Mask, xK_b), sendMessage ToggleStruts),
     ((controlMask, xK_space), spawn "dmenu_run"),
+    ((mod4Mask, xK_l), spawn "xsecurelock"),
     ((0, 0x1008ff03), spawn "xbacklight -dec 10"),
     ((0, 0x1008ff02), spawn "xbacklight -inc 10"),
     ((0, 0x1008ff11), spawn "pacmd dump|awk --non-decimal-data '$1~/set-sink-volume/{system (\"pacmd \"$1\" \"$2\" \"$3-1000)}'"),

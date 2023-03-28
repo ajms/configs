@@ -12,16 +12,20 @@ xsetroot -cursor_name left_ptr
 
 # set up icon tray
 trayer --edge top --align right --SetDockType true --SetPartialStrut true \
- --expand true --width 3 --height 18  --transparent true --tint 0x000000 --alpha 0 &
+ --expand true --width 10 --height 18  --transparent true --tint 0x000000 --alpha 0 &
 
 # start tray apps
 dunst &
 pasystray &
 nm-applet &
 blueman-applet &
+keepassxc &
+cryptomator &
+pcloud &
+slack &
 
-# set dpi
-#xrandr --dpi 120
+# nightmode
+redshift -l 52:13 &
 
 # start xmonad
 exec xmonad
