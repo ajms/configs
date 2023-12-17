@@ -105,7 +105,6 @@ if [[ ! -d $ZSH_CACHE_DIR ]]; then
 fi
 
 source $ZSH/oh-my-zsh.sh
-
 export PATH=$PATH:$HOME/.local/bin
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
@@ -113,3 +112,4 @@ export PATH="$PATH:$HOME/.rvm/bin"
 
 # Alias
 alias penv="poetry shell"
+

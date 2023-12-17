@@ -14,6 +14,13 @@ xsetroot -cursor_name left_ptr
 trayer --edge top --align right --SetDockType true --SetPartialStrut true \
  --expand true --width 10 --height 18  --transparent true --tint 0x000000 --alpha 0 &
 
+
+# Start ssh-agent and add SSH keys
+if [ -z "$SSH_AGENT_PID" ]; then
+    eval "$(ssh-agent -s)"
+    ssh-add ~/.ssh/git_id_ecdsa_sk  # Add your SSH key path here
+fi
+
 # start tray apps
 dunst &
 pasystray &
