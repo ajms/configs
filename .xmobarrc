@@ -1,4 +1,4 @@
-Config { font = "-*-courier-medium-r-normal-*-15-*-*-*-*-*-iso8859-1"
+Config { font = "-*-courier-medium-r-normal-*-20-*-*-*-*-*-iso8859-1"
        , bgColor = "black"
        , fgColor = "grey"
        , position = TopW L 90
@@ -13,23 +13,23 @@ Config { font = "-*-courier-medium-r-normal-*-15-*-*-*-*-*-iso8859-1"
                              , "--high"     , "darkred"
                              ] 10
 
-        -- cpu activity monitor
-        , Run MultiCpu       [ "--template" , "Cpu: <total0>%|<total1>%|<total2>%|<total3>%"
-                             , "--Low"      , "50"         -- units: %
-                             , "--High"     , "85"         -- units: %
-                             , "--low"      , "darkgreen"
-                             , "--normal"   , "darkorange"
-                             , "--high"     , "darkred"
-                             ] 10
+	-- cpu activity monitor
+	, Run MultiCpu       [ "--template" , "Avg cpuq: <total>%"
+                     , "--Low"      , "50"         -- units: %
+                     , "--High"     , "85"         -- units: %
+                     , "--low"      , "darkgreen"
+                     , "--normal"   , "darkorange"
+                     , "--high"     , "darkred"
+                     ] 10
+		     -- cpu core temperature monitor (displaying one core as a rough average)
+		     , Run CoreTemp       [ "--template" , "Avg Temp: <core0>°C"
+                     , "--Low"      , "70"        -- units: °C
+                     , "--High"     , "80"        -- units: °C
+                     , "--low"      , "darkgreen"
+                     , "--normal"   , "darkorange"
+                     , "--high"     , "darkred"
+                     ] 50
 
-        -- cpu core temperature monitor
-        , Run CoreTemp       [ "--template" , "Temp: <core0>°C|<core1>°C"
-                             , "--Low"      , "70"        -- units: °C
-                             , "--High"     , "80"        -- units: °C
-                             , "--low"      , "darkgreen"
-                             , "--normal"   , "darkorange"
-                             , "--high"     , "darkred"
-                             ] 50
                           
         -- memory usage monitor
         , Run Memory         [ "--template" ,"Mem: <usedratio>%"
