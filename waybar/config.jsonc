@@ -11,28 +11,29 @@
 // Install otf-font-awesome ttf-font-logos(AUR)
     //"layer": "top", // Waybar at top layer
     "position": "top", // Waybar position (top|bottom|left|right)
-    "height": 35, // Waybar height (to be removed for auto height)
+    "height": 25, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
-    "spacing": 6, // Gaps between modules (4px)
+    "spacing": 0, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left":   ["niri/workspaces"],
     "modules-center": ["clock"],
     "modules-right":  [
+        "idle_inhibitor",
         "pulseaudio",
         "network",
         "bluetooth",
         "battery",
         "temperature",
         "memory",
-        "power-profiles-daemon",
+        "disk",
         "load",
-        "idle_inhibitor",
+        "niri/language",
         "tray",
-        "custom/logout"
+        "custom/shutdown"
     ],
     // Modules configuration
     "niri/workspaces": {
-        "format": "{icon}   <small>{name}</small>",
+        "format": "{icon}  <small>{name}</small>",
         "format-icons": {
             "active": "<big></big>",
             "default": "<small></small>"
@@ -71,30 +72,15 @@
         "format": "{load1} ",
         "on-click": "kgx -e htop"
     },
-// Install power-profiles-daemon
-    "power-profiles-daemon": {
-        "format": " {icon} ",
-        "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
-        "tooltip": true,
-        "format-icons": {
-            "default": "",
-            "performance": "",
-            "balanced": "",
-            "power-saver": ""
-        }
-    },
     "memory": {
-        "format": "",
-        "format-alt": "{used} Gb ",
-        "tooltip-format": "{percentage}%"
+        "format": "{used} Gb ",
+        "format-alt": "{percentage}% ",
+        "tooltip-format": "Memory: {used} / {total} ({percentage}%)"
     },
     "temperature": {
-        // "thermal-zone": 2,
-        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
         "critical-threshold": 80,
         "format-critical": "  {temperatureC}°C {icon}",
-        "format": "{icon}",
-        "format-alt": "{temperatureC}°C {icon}",
+        "format": "{temperatureC}°C {icon}",
         "format-icons": ["", "", ""],
         "tooltip": false
     },
@@ -106,9 +92,9 @@
             "critical": 5
         },
         "tooltip-format": "Charge: {capacity}%\nHealth: {health}%",
-        "format": "{icon}",
-        "format-charging": "",
-        "format-plugged": "",
+        "format": "{capacity}% {icon}",
+        "format-charging": "{capacity}% ",
+        "format-plugged": "{capacity}% ",
         "format-alt": "{time} {icon}",
         "on-scroll-up": "brightnessctl -c backlight set +1; notify-send -c system ' Brightness: '$(brightnessctl -m | cut -d',' -f4) ",
         "on-scroll-down": "brightnessctl -c backlight set 1-; notify-send -c system ' Brightness: '$(brightnessctl -m | cut -d',' -f4) ",
@@ -116,15 +102,6 @@
         // "format-full": "",
         "format-icons": ["", "", "", "", ""]
     },
-    // "backlight": {
-    //     "device": "acpi_video1",
-    //     "tooltip-format": "Backlight: {percent}%",
-    //     "format": "{icon}",
-    //     "format-alt": "{percent}% {icon}",
-    //     "on-scroll-up": "brightnessctl -c backlight set +1",
-    //     "on-scroll-down": "brightnessctl -c backlight set 1-",
-    //     "format-icons": ["", "", "", "", "", "", "", "", ""]
-    // },
 // Install blueman pulseaudio-bluetooth
 // and https://wiki.archlinux.org/title/Bluetooth#Enabling_experimental_features
     "bluetooth": {
@@ -132,29 +109,28 @@
         "format-alt": "  ",
         "format-connected": " {device_alias}  ",
         "format-connected-battery": " {device_alias} {device_battery_percentage}%  ",
-        // "format-device-preference": [ "device1", "device2" ], // preference list deciding the displayed device
         "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
         "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
         "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
         "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
-        "on-click-right": "blueman-manager"
+        "on-click-right": "blueberry"
     },
 // Install iwd fuzzel polkit
     "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
         "format-wifi": "",
         "format-ethernet": "",
         "tooltip-format-wifi": "  {essid}\nIP: {ipaddr}\nStrength: {signalStrength}%\nFreq: {frequency}MHz",
         "tooltip-format-ethernet": " {ifname}\nIP: {ipaddr}",
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "on-click-right": "nm-connection-editor"
     },
     
-    "custom/logout": {
+    "custom/shutdown": {
         "format": "⏻",
-        "tooltip": false,
-        "on-click": "niri msg action quit"
+        "tooltip": "Shutdown",
+        "on-click": "shutdown now"
     }
     ,
     "tray": {
@@ -164,7 +140,7 @@
     "pulseaudio": {
         "scroll-step": 5, // %, can be a float
         "tooltip-format": "{volume}%",
-        "format": "{icon}", //"{format_source}",
+        "format": "{icon} ", //"{format_source}",
         "format-bluetooth": "{icon}{format_source}",
         "format-bluetooth-muted": " {icon}{format_source}",
         "format-muted": " {format_source}",
@@ -183,12 +159,28 @@
         "on-click-middle": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
     },
     "idle_inhibitor": {
-        "format": "{icon}",
+        "format": "{icon} ",
         "tooltip": true,
         "format-icons": {
             "activated": "",
             "deactivated": ""
         }
+    },
+    "niri/language": {
+        "format": "{} ",
+        "on-click": "niri msg action switch-layout next",
+        "format-en": "En",
+        "format-de": "De",
+        "format-dk": "Dk",
+        "format-gr": "Gr",
+        "min-length": 10,
+        "align": 0.1
+    },
+    "disk": {
+        "format": "{used} / {total} ",
+        "format-alt": "{used} / {total} ({percentage_used}%) ",
+        "path": "/",
+        "tooltip-format": "Disk: {used} / {total} ({percentage_used}%)"
     }
 }
 ]

@@ -327,26 +327,31 @@ window-rule {
     default-column-width {}
 }
 
-workspace "terminal"
-workspace "browser"
+workspace "term"
+workspace "web"
 workspace "dev1"
 workspace "dev2"
 workspace "mail"
 workspace "chat"
+workspace "term2"
+workspace "web2"
+workspace "dev3"
+workspace "dev4"
 
 window-rule {
-  match app-id=r#"Alacritty$"#
-  open-on-workspace "terminal"
+  match app-id=r#"^Alacritty$"#
+  open-on-workspace "term"
 }
+
 window-rule {
-    match app-id=r#"firefox$"#
+    match app-id=r#"^firefox$"#
     open-maximized true
-    open-on-workspace "browser"
+    open-on-workspace "web"
 }
 
 window-rule {
-    match app-id=r#"thunderbird$"#
-    open-fullscreen true
+    match app-id=r#"^thunderbird$"#
+    open-maximized true
     open-on-workspace "mail"
 }
 
@@ -355,6 +360,10 @@ window-rule {
     open-on-workspace "chat"
 }
 
+window-rule {
+    match app-id=r#"^signal$"#
+    open-on-workspace "chat"
+}
 // Example: block out two password managers from screen capture.
 // (This example rule is commented out with a "/-" in front.)
 window-rule {
@@ -534,8 +543,8 @@ binds {
     //
     // For example, with 2 workspaces + 1 empty, indices 3, 4, 5 and so on
     // will all refer to the 3rd workspace.
-    Mod+1 { focus-workspace "terminal"; }
-    Mod+2 { focus-workspace "browser"; }
+    Mod+1 { focus-workspace "term"; }
+    Mod+2 { focus-workspace "web"; }
     Mod+3 { focus-workspace "dev1"; }
     Mod+4 { focus-workspace "dev2"; }
     Mod+5 { focus-workspace "mail"; }
@@ -543,8 +552,12 @@ binds {
     Mod+7 { focus-workspace 7; }
     Mod+8 { focus-workspace 8; }
     Mod+9 { focus-workspace 9; }
-    Mod+Ctrl+1 { move-column-to-workspace "terminal"; }
-    Mod+Ctrl+2 { move-column-to-workspace "browser"; }
+    Alt+1 { focus-workspace "term2"; }
+    Alt+2 { focus-workspace "web2"; }
+    Alt+3 { focus-workspace "dev3"; }
+    Alt+4 { focus-workspace "dev4"; }
+    Mod+Ctrl+1 { move-column-to-workspace "term"; }
+    Mod+Ctrl+2 { move-column-to-workspace "web"; }
     Mod+Ctrl+3 { move-column-to-workspace "dev1"; }
     Mod+Ctrl+4 { move-column-to-workspace "dev2"; }
     Mod+Ctrl+5 { move-column-to-workspace "mail"; }
@@ -552,7 +565,10 @@ binds {
     Mod+Ctrl+7 { move-column-to-workspace 7; }
     Mod+Ctrl+8 { move-column-to-workspace 8; }
     Mod+Ctrl+9 { move-column-to-workspace 9; }
-
+    Alt+Ctrl+1 { move-column-to-workspace "term2"; }
+    Alt+Ctrl+2 { move-column-to-workspace "web2"; }
+    Alt+Ctrl+3 { move-column-to-workspace "dev3"; }
+    Alt+Ctrl+4 { move-column-to-workspace "dev4"; }
     // Alternatively, there are commands to move just a single window:
     // Mod+Ctrl+1 { move-window-to-workspace 1; }
 
