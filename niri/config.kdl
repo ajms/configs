@@ -277,7 +277,10 @@ spawn-at-startup "keepassxc"
 spawn-at-startup "nm-applet"
 spawn-at-startup "cryptomator"
 spawn-at-startup "pcloud"
+spawn-at-startup "thunderbird"
+spawn-at-startup "mattermost-desktop"
 spawn-at-startup "redshift -l 52:13"
+spawn-sh-at-startup "~/scripts/add_yubi_ssh.sh"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
@@ -356,12 +359,10 @@ window-rule {
 }
 
 window-rule {
-    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
-    open-on-workspace "chat"
-}
-
-window-rule {
     match app-id=r#"^signal$"#
+    match app-id=r#"^whatsapp-desktop-client$"#
+    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
+    match app-id=r#"^mattermost-desktop$"#
     open-on-workspace "chat"
 }
 // Example: block out two password managers from screen capture.
